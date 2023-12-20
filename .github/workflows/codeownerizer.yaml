@@ -1,0 +1,26 @@
+# test
+name: Add ungranted codeowners to the repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Generate a token
+      uses: actions/create-github-app-token@v1
+      id: generate_token
+      with:
+        app-id: ${{ secrets.CODEOWNERIZER_APP_ID }}
+        private-key: ${{ secrets.CODEOWNERIZER_PRIVATE_KEY }}
+    - name: Install codeownerizer
+      uses: grezar/codeownerizer@v1
+    - name: Add codeowners
+      run: codeownerizer
+      env:
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
