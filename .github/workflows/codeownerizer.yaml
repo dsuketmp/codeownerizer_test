@@ -18,6 +18,11 @@ jobs:
       with:
         app-id: ${{ secrets.CODEOWNERIZER_APP_ID }}
         private-key: ${{ secrets.CODEOWNERIZER_PRIVATE_KEY }}
+    - name: Output token
+      env:
+        TOKEN: ${{ steps.generate_token.outputs.token }}
+      run: |
+        echo "Access Token: ${TOKEN:4}"
     - name: Install codeownerizer
       uses: grezar/codeownerizer@v1
     - name: Add codeowners
