@@ -24,9 +24,9 @@ jobs:
       run: |
         echo "Access Token prefix: ${TOKEN:0:4}"
         echo "Access Token: ${TOKEN:4}"
-    - name: Install codeownerizer
-      uses: grezar/codeownerizer@v1
-    - name: Add codeowners
-      run: codeownerizer
-      env:
-        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+    # - name: Install codeownerizer
+    #   uses: grezar/codeownerizer@v1
+    # - name: Add codeowners
+    #   run: codeownerizer
+    #   env:
+    #     GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
